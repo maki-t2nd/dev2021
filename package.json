@@ -1,0 +1,46 @@
+{
+    "private": true,
+    "scripts": {
+        "build:html": "eleventy",
+        "watch:html": "eleventy --watch",
+        "css:sass": "sass src/scss:_site/css --style expanded",
+        "css:postcss": "AUTOPREFIXER_GRID=autoplace postcss _site/css/style.css --use autoprefixer --dir _site/css/ --map file",
+        "build:css": "run-s css:sass css:postcss",
+        "watch:css": "onchange \"./src/scss\" --  npm run build:css",
+        "wp:js": "webpack --watch",
+        "cp:js": "cpx \"src/**/*.js\" \"_site/\"",
+        "watch:js": "cpx \"src/**/*.js\" \"_site/\" --watch",
+        "cp:other": "cpx \"src/**/*.{html,css,svg,png,jpg,gif}\" \"_site/\"",
+        "watch:other": "cpx \"src/**/*.{html,css,svg,png,jpg,gif}\" \"_site/\" --watch",
+        "clean": "rimraf ./_site",
+        "serve": "browser-sync start --config bs-config.js",
+        "watch": "run-p serve watch:*",
+        "watch2": "run-p serve watch:html watch:css watch:other wp:js",
+        "build": "run-p build:*",
+        "cp": "run-p cp:*",
+        "start": "run-s clean build cp watch",
+        "wp": "run-s clean build cp:other watch2"
+    },
+    "devDependencies": {
+        "@11ty/eleventy": "^0.12.1",
+        "@babel/core": "^7.14.6",
+        "@babel/preset-env": "^7.14.7",
+        "autoprefixer": "^10.3.1",
+        "babel-loader": "^8.2.2",
+        "cpx": "^1.5.0",
+        "npm-run-all": "^4.1.5",
+        "onchange": "^7.1.0",
+        "postcss-cli": "^8.3.1",
+        "rimraf": "^2.7.1",
+        "sass": "^1.35.2",
+        "webpack": "^5.45.1",
+        "webpack-cli": "^4.7.2"
+    },
+    "browserslist": [
+        "> 2%",
+        "ie >= 11"
+    ],
+    "dependencies": {
+        "jquery": "^3.6.0"
+    }
+}

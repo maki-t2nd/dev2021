@@ -1,0 +1,20 @@
+.l-header {
+  margin: auto;
+}
+
+.hoge {
+  display: grid;
+  grid-template:
+    'fuga piyo' auto / 100px 200px
+  ;
+  .fuga {
+    grid-area: fuga;
+  }
+  .piyo {
+    grid-area: piyo;
+  }
+}
+
+.l-footer {
+  display: grid;
+}
